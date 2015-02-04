@@ -131,7 +131,11 @@
             {% endfor %}
             {% endif %}
             <div class="post-content">
-              <h2><a href="{{ post.permalink }}">{{ post.title }}</a></h2>
+              <h2>              {% if post.tags %}
+              <div class="post-tags">
+                <p>{{- post.tags|format_tags(humanize=True) -}}</p>
+              </div>
+              {% endif %}<a href="{{ post.permalink }}">{{ post.title }}</a></h2>
               <p class="post-date"><time datetime="{{ post.created_at }}">{{ post.created_at|date_format }}</time></p>
               {% if post.tags and not post.photos %}
               <p class="post-tags">{{- post.tags|format_tags(humanize=True) -}}</p>
